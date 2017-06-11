@@ -26,8 +26,8 @@ class Navbar extends Component {
 
 Navbar.defaultProps = {
 	title: 'Navbar',
-	tintColor: '#3B5998',
-	navbarColor: '#ffffff'
+	tintColor: '#ffffff',
+	navbarColor: '#39AEF8'
 };
 
 const styles = {
