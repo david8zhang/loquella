@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import { Divider } from 'react-native-elements';
@@ -76,4 +77,10 @@ const styles = {
 	}
 };
 
-export default OnboardPage;
+const mapStateToProps = (state) => {
+	return {
+		language: state.language
+	}
+}
+
+export default connect(mapStateToProps, null)(OnboardPage);

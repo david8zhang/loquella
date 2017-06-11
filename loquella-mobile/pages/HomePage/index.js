@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
+import * as actions from '../../actions';
 import { Navbar } from '../../components';
 import { languages } from './dummy';
 
@@ -12,16 +14,26 @@ class HomePage extends Component {
 	 * when clicked, save the language setting in redux
 	 */
 	renderLanguages() {
-		let onPress = () => Actions.onboard();
+		let onPress = (value) => {
+			this.props.setLanguage(value);
+			Actions.onboard();
+		};
 		if (this.props.learn) {
-			onPress = () => Actions.module();
+			onPress = (value) => {
+				this.props.setLanguage(value);
+				Actions.module();
+			};
 		}
 		return languages.map((option) => {
 			const { lang, image } = option;
+			const langCode = {
+				'اللهجة الشامية': 1,
+				English: 2
+			};
 			return (
 				<ListItem
 					roundAvatar
-					onPress={onPress}
+					onPress={() => onPress(langCode[lang])}
 					avatar={image}
 					key={lang}
 					title={lang}
@@ -30,6 +42,7 @@ class HomePage extends Component {
 		});
 	}
 	render() {
+		console.log('language', this.props.language);
 		return (
 			<View>
 				<Navbar title='Loquella' />
@@ -65,4 +78,10 @@ class HomePage extends Component {
 	}
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+	return {
+		language: state.language
+	};
+};
+
+export default connect(mapStateToProps, actions)(HomePage);

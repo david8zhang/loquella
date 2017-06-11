@@ -34,6 +34,7 @@ class NewPage extends Component {
 		return options;
 	}
 	render() {
+		console.log('language', this.props.language);
 		const { problemStyle, answerStyle, buttonGroupStyle } = styles;
 		return (
 			<View>
@@ -77,20 +78,12 @@ class NewPage extends Component {
 						onChange={(solution) => this.setState({ solution })}
 					/>
 				</View>
-				<View style={buttonGroupStyle}>
-					<Button
-						style={{ flex: 1 }}
-						title='Next Problem'
-						backgroundColor='#00C853'
-						onPress={() => Actions.new()}
-					/>
-					<Button
-						style={{ flex: 1 }}
-						title='Publish Module'
-						backgroundColor='#1565C0'
-						onPress={() => Actions.module({ creator: true })}
-					/>
-				</View>
+				<Button
+					style={{ marginTop: 10 }}
+					title='Publish Module'
+					backgroundColor='#1565C0'
+					onPress={() => Actions.module({ creator: true })}
+				/>
 			</View>
 		);
 	}
@@ -113,4 +106,10 @@ const styles = {
 	}
 };
 
-export default NewPage;
+const mapStateToProps = (state) => (
+	{
+		language: state.language
+	}
+)
+
+export default connect(mapStateToProps, null)(NewPage);

@@ -2,14 +2,33 @@ import React, { Component } from 'react';
 import { Button } from 'react-native-elements';
 import { View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { ScorePage } from '../ScorePage';
 
 class QuestionPage extends Component {
 	
-	state = { questions: [["Which of the following is a noun?"], ["Which of the following is a verb?"], ["Which of the following is an adjective?"]], 
-	answers: [["house", "run", "over", "fried"], ["house", "workplace", "over", "run"], ["fast", "run", "fat", "ferari"]], 
-	index:0, skipped:0, correct:0, incorrect:0, correct_answers: ["house", "run", "fat"], incorrect_questions: [], correct_questions: [], 
-	skipped_questions: []};
+	state = { 
+		questions: [
+			["Which of the following is a noun?"], 
+			["Which of the following is a verb?"], 
+			["Which of the following is an adjective?"]
+		], 
+		answers: [
+			["house", "run", "over", "fried"], 
+			["house", "workplace", "over", "run"], 
+			["fast", "run", "fat", "ferari"]
+		], 
+		index:0, 
+		skipped:0, 
+		correct:0, 
+		incorrect:0, 
+		correct_answers: [
+			"house", 
+			"run", 
+			"fat"
+		], 
+		incorrect_questions: [], 
+		correct_questions: [], 
+		skipped_questions: []
+	};
 	
 	componentWillMount(){
 		//For use later, will pull down info from the backend stuff

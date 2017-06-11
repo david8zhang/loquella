@@ -1,7 +1,8 @@
 /* global require */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { Navbar } from '../../components';
 
@@ -18,26 +19,36 @@ class ModulePage extends Component {
 			} = module;
 			const SubTitle = (
 				<View style={moduleStyle}>
-					<View style={{ flex: 2, paddingRight: 20 }}>
-						<Text style={{ fontWeight: 'bold' }}>
-							{author}
-						</Text>
-						<Text 
-							style={{ 
-								fontStyle: 'italic',
-								paddingBottom: 5 
-							}}
-						>
-							{category}
-						</Text>
-						<Text>{description}</Text>
-					</View>
-					<View style={{ padding: 10 }}>
-						<Text>Difficulty</Text>
-						<Text style={{ textAlign: 'center', fontSize: 20 }}>
-							{difficulty}
-						</Text>
-					</View>
+					<TouchableOpacity 
+						onPress={() => Actions.question()}
+ 						style={{ flex: 2, paddingRight: 20 }}
+					>
+						<View>
+							<Text style={{ fontWeight: 'bold' }}>
+								{author}
+							</Text>
+							<Text 
+								style={{ 
+									fontStyle: 'italic',
+									paddingBottom: 5 
+								}}
+							>
+								{category}
+							</Text>
+							<Text>{description}</Text>
+						</View>
+					</TouchableOpacity>
+					<TouchableOpacity
+						onPress={() => Actions.question()}
+						style={{ padding: 10 }}
+					>
+						<View>
+							<Text>Difficulty</Text>
+							<Text style={{ textAlign: 'center', fontSize: 20 }}>
+								{difficulty}
+							</Text>
+						</View>
+					</TouchableOpacity>
 				</View>
 			);
 			return (
@@ -51,6 +62,7 @@ class ModulePage extends Component {
 		});
 	}
 	render() {
+		console.log('language', this.props.language);
 		return (
 			<View>
 				<Navbar title='Browse Modules' />
@@ -98,4 +110,10 @@ ModulePage.defaultProps = {
 	}]
 };
 
-export default ModulePage;
+const mapStateToProps = (state) => (
+	{
+		language: state.language
+	}	
+);
+
+export default connect(mapStateToProps, null)(ModulePage);
