@@ -5,7 +5,9 @@ import {
 	LoginPage, 
 	OnboardPage,
 	ModulePage,
-	NewPage
+	NewPage,
+	QuestionPage,
+	ScorePage
 } from './pages';
 
 const RouterComponent = () => (
@@ -34,6 +36,16 @@ const RouterComponent = () => (
 			key='new'
 			component={NewPage}
 			style={sceneStyle}
+		/>
+		<Scene
+			key='question'
+			component={QuestionPage}
+			style={{ paddingTop: 24 }}
+		/>
+		<Scene
+			key='score'
+			component={ScorePage}
+			style={{ paddingTop: 24 }}
 		/>
 	</Router>
 );
