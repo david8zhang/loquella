@@ -1,13 +1,18 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
-import { HomePage } from './pages';
+import { HomePage, LoginPage } from './pages';
 
 const RouterComponent = () => (
-	<Router>
+	<Router hideNavBar>
 		<Scene 
 			key='home'
 			component={HomePage}
-			title='Home'
+			style={{ paddingTop: 24 }}
+		/>
+		<Scene
+			key='login'
+			component={LoginPage}
+			style={{ paddingTop: 24 }}
 		/>
 	</Router>
 );
