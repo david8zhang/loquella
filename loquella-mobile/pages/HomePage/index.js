@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { Navbar } from '../../components';
@@ -12,12 +12,16 @@ class HomePage extends Component {
 	 * when clicked, save the language setting in redux
 	 */
 	renderLanguages() {
+		let onPress = () => Actions.onboard();
+		if (this.props.learn) {
+			onPress = () => Actions.module();
+		}
 		return languages.map((option) => {
 			const { lang, image } = option;
 			return (
 				<ListItem
 					roundAvatar
-					onPress={() => Actions.login()}
+					onPress={onPress}
 					avatar={image}
 					key={lang}
 					title={lang}
@@ -29,6 +33,30 @@ class HomePage extends Component {
 		return (
 			<View>
 				<Navbar title='Loquella' />
+				{
+					this.props.teach &&
+					<Text 
+						style={{ 
+							padding: 20, 
+							fontSize: 20,
+							fontWeight: 'bold'
+						}}
+					>
+						I want to teach...
+					</Text>
+				}
+				{
+					this.props.learn &&
+					<Text 
+						style={{ 
+							padding: 20, 
+							fontSize: 20,
+							fontWeight: 'bold'
+						}}
+					>
+						I want to learn...
+					</Text>
+				}
 				<List containerStyle={{ margin: 20 }}>
 					{ this.renderLanguages() }
 				</List>	
